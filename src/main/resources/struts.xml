@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="ssh" extends="struts-default" namespace="/">
+		<!-- 由Spring负责创建action实体 -->
+		<!-- struts配置中的class直接写spring中的bean id，这种方式创建的Action可以使用aop进行管理 -->
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="findAll">/jsp/show2.jsp</result>
+			<!-- <result name="findAllJSON">/jsp/show3.jsp</result> -->
+		</action>
+		<action name="viewProduct">
+			<result>/jsp/show4.jsp</result>
+		</action>
+
+		<action name="employee_*" class="employeeAction" method="{1}">
+			<result name="input">/index.jsp</result>
+			<result name="success" type="redirect">/frame.jsp</result>
+			<result name="findAll">/jsp/employee/list.jsp</result>
+			<result name="saveUI">/jsp/employee/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">employee_findAll.action
+			</result>
+			<result name="editUI">/jsp/employee/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">employee_findAll.action
+			</result>
+			<result name="deleteSuccess" type="redirectAction">employee_findAll.action
+			</result>
+		</action>
+
+		<action name="department_*" class="departmentAction" method="{1}">
+			<result name="findAll">/jsp/department/list.jsp</result>
+			<result name="saveUI">/jsp/department/addDepartment.jsp</result>
+			<result name="saveSuccess" type="redirectAction">department_findAll.action
+			</result>
+			<result name="editSuccess">/jsp/department/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">department_findAll.action
+			</result>
+			<result name="deleteSuccess" type="redirectAction">department_findAll.action
+			</result>
+		</action>
+	</package>
+</struts>
